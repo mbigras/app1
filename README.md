@@ -1,6 +1,6 @@
 # App1
 
-> App1 is a small flask app for experimentation.
+> App1 is a small flask web app for experimentation.
 
 App1 serves as an application template for more complex web applications. It demonstrates norms and conventions that increase reliability during application delivery. For a detailed discussion on application delivery refer to this excellent Hashicorp document: [Application Delivery with HashiCorp](https://www.hashicorp.com/resources/application-delivery-hashicorp)
 
@@ -20,7 +20,7 @@ App1 serves as an application template for more complex web applications. It dem
 
    * Publish the app1 default listening port 8080 to host port 8080
 
-1. Open a separate termainl
+1. Open a separate terminal
 
 1. Issue an HTTP request to the root route
 
