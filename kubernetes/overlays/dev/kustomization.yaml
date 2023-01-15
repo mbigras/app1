@@ -1,0 +1,12 @@
+resources:
+  - ../../base
+  - git@github.com:mbigras/config.git/global?ref=e2a8a43df114414e4edda7b84106d2ad31e76dcb
+  - git@github.com:mbigras/config.git/dev?ref=e2a8a43df114414e4edda7b84106d2ad31e76dcb
+
+patches:
+  - deployment.yaml
+
+configMapGenerator:
+  - name: app1-dev
+    envs:
+      - app1-dev.env

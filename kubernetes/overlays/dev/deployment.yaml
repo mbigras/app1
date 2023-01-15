@@ -1,0 +1,38 @@
+kind: Deployment
+apiVersion: apps/v1
+metadata:
+  name: app1
+spec:
+  template:
+    spec:
+      containers:
+        - name: app1
+          image: mbigras/app1:2450955dfc3fc9364fd65f15f1210512ea367f86
+          env:
+            # Global
+            - name: ORG
+              valueFrom:
+                configMapKeyRef:
+                  name: global
+                  key: ORG
+
+            # Environment
+            - name: ENV
+              valueFrom:
+                configMapKeyRef:
+                  name: dev
+                  key: ENV
+
+            # App1 base
+            - name: OWNER
+              valueFrom:
+                configMapKeyRef:
+                  name: app1-base
+                  key: OWNER
+
+            # App1 environment
+            - name: FEATURES
+              valueFrom:
+                configMapKeyRef:
+                  name: app1-dev
+                  key: FEATURES
