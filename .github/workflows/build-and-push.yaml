@@ -18,11 +18,12 @@ jobs:
         run: |
           ls ${{ github.workspace }}
       - run: |
-          docker build -t mbigras/app1:${{ github.sha }} . \
-          && docker tag mbigras/app1:${{ github.sha }} mbigras/app1:latest \
+          docker build -t mbigras/app1:$COMMIT . \
+          && docker tag mbigras/app1:$COMMIT mbigras/app1:latest \
           && echo $DOCKER_TOKEN | docker login --username mbigras --password-stdin \
-          && docker push mbigras/app1:${{ github.sha }} \
+          && docker push mbigras/app1:$COMMIT \
           && docker push mbigras/app1:latest
         env:
+          COMMIT: ${{ github.sha }}
           DOCKER_TOKEN: ${{ secrets.DOCKER_TOKEN }}
       - run: echo "🍏 This job's status is ${{ job.status }}."
