@@ -15,5 +15,8 @@ jobs:
       - name: List files in the repository
         run: |
           ls ${{ github.workspace }}
+      - run: |
+          docker build -t mbigras/app1:${{ github.sha }} . \
+          && docker tag mbigras/app1:${{ github.sha }} mbigras/app1:latest \
+          && docker push --all-tags mbigras/app1:${{ github.sha }}
       - run: echo "🍏 This job's status is ${{ job.status }}."
-      - run: docker build -t mbigras/app1:latest .
