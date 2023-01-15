@@ -23,4 +23,6 @@ jobs:
           && echo $DOCKER_TOKEN | docker login --username mbigras --password-stdin \
           && docker push mbigras/app1:${{ github.sha }} \
           && docker push mbigras/app1:latest
+        env:
+          DOCKER_TOKEN: ${{ secrets.DOCKER_TOKEN }}
       - run: echo "🍏 This job's status is ${{ job.status }}."
