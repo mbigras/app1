@@ -8,7 +8,8 @@ app.config["org"] = os.environ.get("ORG", "unset")
 app.config["owner"] = os.environ.get("OWNER", "unset")
 app.config["env"] = os.environ.get("ENV", "unset")
 app.config["features"] = os.environ.get("FEATURES", "unset")
-
+app.config["JSON_SORT_KEYS"] = False
+app.config["JSONIFY_PRETTYPRINT_REGULAR"] = True
 
 @app.route("/")
 def hello():
