@@ -1,27 +1,22 @@
 import os
+import socket
 
 import flask
 
-app = flask.Flask(__name__)
-app.config["version"] = __version__ = "0.0.1"
-app.config["env"] = os.environ.get("ENV", "dev")
-app.config["default_settings"] = {
-    "foo": "default foo",
-    "bar": "default bar",
-    "baz": "default baz",
-}
-app.config["settings"] = {
-    "foo": os.environ.get("FOO", app.config["default_settings"]["foo"]),
-    "bar": os.environ.get("BAR", app.config["default_settings"]["bar"]),
-    "baz": os.environ.get("BAZ", app.config["default_settings"]["baz"]),
-}
+app = flask.Flask(os.environ.get("APP", "app1"))
+app.config["org"] = os.environ.get("ORG", "unset")
+app.config["owner"] = os.environ.get("OWNER", "unset")
+app.config["env"] = os.environ.get("ENV", "unset")
+app.config["features"] = os.environ.get("FEATURES", "unset")
 
 
 @app.route("/")
 def hello():
     return flask.jsonify(
         app=app.name,
+        org=app.config["org"],
+        owner=app.config["owner"],
         env=app.config["env"],
-        version=app.config["version"],
-        settings=app.config["settings"],
+        features=app.config["features"],
+        host=socket.gethostname(),
     )
