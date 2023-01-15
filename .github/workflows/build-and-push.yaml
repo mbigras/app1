@@ -20,6 +20,17 @@ jobs:
       - run: |
           docker build -t mbigras/app1:$COMMIT . \
           && docker tag mbigras/app1:$COMMIT mbigras/app1:latest \
+          && docker run --name app1 -d mbigras/app1:$COMMIT \
+          && docker exec app1 curl \
+                      --connect-timeout 5 \
+                      --max-time 10 \
+                      --retry 5 \
+                      --retry-delay 0 \
+                      --retry-max-time 40 \
+                      --retry-all-errors \
+                      http://localhost \
+          && docker stop app1 \
+          && docker rm app1 \
           && echo $DOCKER_TOKEN | docker login --username mbigras --password-stdin \
           && docker push mbigras/app1:$COMMIT \
           && docker push mbigras/app1:latest
