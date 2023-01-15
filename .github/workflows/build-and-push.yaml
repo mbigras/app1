@@ -1,3 +1,5 @@
+# Build and push Docker image.
+# See https://docs.github.com/en/actions/quickstart#creating-your-first-workflow.
 name: Build and push Docker image
 run-name: ${{ github.actor }} is testing out GitHub Actions 🚀
 on: [push]
